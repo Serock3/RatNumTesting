@@ -1,16 +1,13 @@
-package test;
+package main;
 
-/**
- * Created by sebas on 2016-11-29.
- */
+// du behöver inte förstå allt här
 /**
  * RatNumTest1 testar om gcd funktionen fungerar
  * 2013-10-15 all text tio English
  * 2016 res + javaSTLgcdWorkaround + some small things
  * TODO (even better formating (indentation) of answers - lowpri)
  */
-import main.ExtendedMath;
-
+import java.util.*;
 import java.math.BigInteger;
 public class RatNumTest1 {
     // String är egentligen helt olämplig här, StringBuffer är bättre
@@ -22,7 +19,7 @@ public class RatNumTest1 {
         res = res + spaces(diff);
         int z = 0;
         try {
-            z = ExtendedMath.gcd(m,n);
+            z = RatNum.gcd(m,n);
         }
         // exception genererad
         catch (IllegalArgumentException e1) {

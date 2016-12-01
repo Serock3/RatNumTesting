@@ -5,7 +5,6 @@ import javafx.util.Pair;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by sebas on 2016-11-29.
@@ -124,8 +123,8 @@ public class RatNum {
 
         if (n % d == 0) ratNum.setBoth(n / d, 1, false);
         else {
-            int gcd = ExtendedMath.gcd(d, n);
-            while ((gcd = ExtendedMath.gcd(d, n)) != 1) {
+            int gcd = gcd(d, n);
+            while ((gcd = gcd(d, n)) != 1) {
                 n /= gcd;
                 d /= gcd;
             }
@@ -143,12 +142,9 @@ public class RatNum {
      * @return
      */
 
-    public static RatNum evalExpr2(String expr) {
+    public static RatNum evalExprWell2(String expr) {
         //Removes all whitespace from the string
-        String tmp[] = expr.split("\\s");
-        expr = "";
-        for (String tmp2 : tmp) expr += tmp2;
-
+        expr = expr.replaceAll("\\s", "");
 
         ArrayList<RatNum> ratNums = new ArrayList<>();
         ArrayList<ArithmeticalOperator> arithmeticalOperators = new ArrayList<>();
@@ -157,7 +153,7 @@ public class RatNum {
         while (i < expr.length()) {
             if (expr.charAt(i) == '(') {
                 String parenthesisContents = parenthesisTrim(expr, i);
-                ratNums.add(evalExpr2(parenthesisContents));
+                ratNums.add(evalExprWell2(parenthesisContents));
                 int indexAfterClosingParenthesis = i + parenthesisContents.length() + 2;
                 i = indexAfterClosingParenthesis;
                 nextOperator = findNextOperator(expr, i);
@@ -171,7 +167,7 @@ public class RatNum {
                 if (nextOperator.getKey() == ArithmeticalOperator.Sub && nextOperator.getValue() == i)
                     nextOperator = findNextOperator(expr, i + 1);
                 if (nextOperator.getValue() == i)
-                    throw new NumberFormatException("Expected a value in evalExpr, but found " + nextOperator.getKey() + " at " + nextOperator.getValue());
+                    throw new NumberFormatException("Expected a value in evalExprWell, but found " + nextOperator.getKey() + " at " + nextOperator.getValue());
                 if (nextOperator.getValue() == -1) {
                     ratNums.add(new RatNum(expr.substring(i, expr.length())));
                     //This is the expected end of the expression
@@ -237,11 +233,118 @@ public class RatNum {
     }
 
     //Public methods
+    public static int gcd(int a, int b){
+        if(a==0 && b==0){
+            throw new IllegalArgumentException();
+        }
+        while (Math.abs(b) > 0)
+        {
+            int temp = Math.abs(b);
+            b = Math.abs(a) % Math.abs(b); // % is remainder
+            a = temp;
+        }
+        return a;
+    }
 
-    //TODO: // FIXME: 2016-11-30
-    // denna tar ej i hänsyn prioriteringsregler för operatore inte heller behandlar den a/b / c/d som (a/b)/(c/d)
-    public static String evalExpr(String expr) {
-        return evalExpr2(expr).toString();
+    static String evalExpr(String text) {
+        // The first part of this method calculates all the terms together,
+        // taking order of operations into account and then calculating from left to right.
+
+        String input = text;
+
+        String[] parts = null;
+        String[] operators = {"*", "/", "+", "-", "<", ">", "!=", "=="};
+
+        int found;
+
+        do {
+            found = 0;
+
+            for (int o = 0; o < 4; o += 2) {
+                if (found == 0) {
+                    parts = text.split(" ");
+
+                    text = "";
+
+                    for (int i = 0; i < parts.length; i++) {
+                        if (i < parts.length - 1 && (parts[i + 1].equals(operators[o]) || parts[i + 1].equals(operators[o + 1])) && found == 0) {
+
+                            // Since multiplication and division have the same priority and both of them are checked in the if-statement above,
+                            // I have to do a check which one of them that was triggered. The same goes for addition and subtraction.
+
+                            int mod;
+                            if (parts[i + 1].equals(operators[o])) {
+                                mod = 0;
+                            } else {
+                                mod = 1;
+                            }
+
+                            switch (operators[o + mod]) {
+                                case "*":
+                                    text += parse(parts[i]).mul(parse(parts[i + 2])) + " ";
+                                    break;
+                                case "/":
+                                    text += parse(parts[i]).div(parse(parts[i + 2])) + " ";
+                                    break;
+                                case "+":
+                                    text += parse(parts[i]).add(parse(parts[i + 2])) + " ";
+                                    break;
+                                case "-":
+                                    text += parse(parts[i]).sub(parse(parts[i + 2])) + " ";
+                                    break;
+                            }
+
+                            found = i + 1;
+
+                            // If there isn't an operator at the current field, and it's not included into the newly calculated two terms I'll just keep it as it is.
+                        } else {
+                            if (Math.abs(found - i) > 1 || found == 0) {
+                                boolean justadd = false;
+
+                                for (String op : operators) {
+                                    if (op.equals(parts[i]))
+                                        justadd = true;
+                                }
+
+                                if (justadd)
+                                    text += parts[i] + " ";
+                                else
+                                    text += parse(parts[i]) + " ";
+                            }
+                        }
+                    }
+                }
+            }
+        } while (found != 0);
+
+        // Once the string leaves the loop it should be fully simplified and handling of the expression can take place, if there are one.
+
+        String response = "";
+
+        // Should only be 3 fields in the array by now
+
+        if (parts.length == 3) {
+            switch (parts[1]) {
+                case "<":
+                    response = (parse(parts[0]).lessThan(parse(parts[2]))) ? "true" : "false";
+                    break;
+                case ">":
+                    response = (parse(parts[2]).lessThan(parse(parts[0]))) ? "true" : "false";
+                    break;
+                case "=":
+                    response = (parse(parts[0]).equals(parse(parts[2]))) ? "true" : "false";
+                    break;
+                case "!=":
+                    response = (parse(parts[0]).equals(parse(parts[2]))) ? "false" : "true";
+                    break;
+            }
+        }
+
+        return "Input:\t" + input + "\n" + "Simp:\t" + text + "\n" + "Eval:\t" + response;
+    }
+
+    public static String evalExprWell(String expr) {
+        return evalExprWell2(expr).toString();
     }
 
     public static RatNum parse(String parseStr) {
@@ -267,7 +370,7 @@ public class RatNum {
 
     @Override
     public String toString() {
-        return numerator + "/" + denominator;
+        return (denominator == 1) ? "" + numerator : numerator + "/" + denominator;
     }
 
     @Override
