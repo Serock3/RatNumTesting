@@ -144,7 +144,12 @@ public class RatNum {
      */
 
     public static RatNum evalExpr2(String expr) {
-        expr = expr.trim();
+        //Removes all whitespace from the string
+        String tmp[] = expr.split("\\s");
+        expr = "";
+        for (String tmp2 : tmp) expr += tmp2;
+
+
         ArrayList<RatNum> ratNums = new ArrayList<>();
         ArrayList<ArithmeticalOperator> arithmeticalOperators = new ArrayList<>();
         int i = 0;
@@ -156,13 +161,15 @@ public class RatNum {
                 int indexAfterClosingParenthesis = i + parenthesisContents.length() + 2;
                 i = indexAfterClosingParenthesis;
                 nextOperator = findNextOperator(expr, i);
-                if(nextOperator.getKey()==ArithmeticalOperator.Sub && nextOperator.getValue() == i) nextOperator = findNextOperator(expr, i+1);
+                if (nextOperator.getKey() == ArithmeticalOperator.Sub && nextOperator.getValue() == i)
+                    nextOperator = findNextOperator(expr, i + 1);
                 if (nextOperator.getValue() == -1) return calcExpr(ratNums, arithmeticalOperators);
                 if (nextOperator.getValue() != i && nextOperator.getKey() != ArithmeticalOperator.Sub)
                     throw new NumberFormatException("Expected operator after closing parenthesis at " + i);
             } else {
                 nextOperator = findNextOperator(expr, i);
-                if(nextOperator.getKey()==ArithmeticalOperator.Sub && nextOperator.getValue() == i) nextOperator = findNextOperator(expr, i+1);
+                if (nextOperator.getKey() == ArithmeticalOperator.Sub && nextOperator.getValue() == i)
+                    nextOperator = findNextOperator(expr, i + 1);
                 if (nextOperator.getValue() == i)
                     throw new NumberFormatException("Expected a value in evalExpr, but found " + nextOperator.getKey() + " at " + nextOperator.getValue());
                 if (nextOperator.getValue() == -1) {
@@ -201,7 +208,7 @@ public class RatNum {
         int itmp;
         ArithmeticalOperator firstOperator = null;
         for (ArithmeticalOperator arithmeticalOperator : ArithmeticalOperator.values()) {
-            itmp = expr.indexOf(arithmeticalOperator.getSyntax(),startindex);
+            itmp = expr.indexOf(arithmeticalOperator.getSyntax(), startindex);
             if (itmp == -1) continue;
             if (itmp < i) {
                 i = itmp;
