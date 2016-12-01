@@ -5,7 +5,7 @@ package main;
 public enum ArithmeticalOperator implements Operator {
 
     //These operators need to be in order from highest to lower prio when evaluated in an expression
-    Mul("*", (a, b) -> a.mul(b)), Div("/", (a, b) -> a.div(b)), Add("+", (a, b) -> a.add(b)), Sub("-", (a, b) -> a.sub(b));
+    Div("/", (a, b) -> a.div(b)), Mul("*", (a, b) -> a.mul(b)), Add("+", (a, b) -> a.add(b)), Sub("-", (a, b) -> a.sub(b));
 
     public final String syntax;
     private final Operator operator;

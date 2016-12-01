@@ -6,6 +6,6 @@ package main;
  */
 public class MainMenu {
     public static void main(String args[]) {
-        System.out.println(RatNum.evalExpr("15/2 > 1/2"));
+        System.out.println(RatNum.evalExprWell("1/1*2"));
     }
 }
