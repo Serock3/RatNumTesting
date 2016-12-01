@@ -3,7 +3,7 @@ package main;
 /**
  * Created by sebas on 2016-11-29.
  */
-public abstract class SimpleMath {
+public abstract class ExtendedMath {
 
     //TODO: // FIXME: 2016-11-29
     //Brutalt stulen kod från internet ples fix

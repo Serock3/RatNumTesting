@@ -9,9 +9,8 @@ package test;
  * 2016 res + javaSTLgcdWorkaround + some small things
  * TODO (even better formating (indentation) of answers - lowpri)
  */
-import main.SimpleMath;
+import main.ExtendedMath;
 
-import java.util.*;
 import java.math.BigInteger;
 public class RatNumTest1 {
     // String är egentligen helt olämplig här, StringBuffer är bättre
@@ -23,7 +22,7 @@ public class RatNumTest1 {
         res = res + spaces(diff);
         int z = 0;
         try {
-            z = SimpleMath.gcd(m,n);
+            z = ExtendedMath.gcd(m,n);
         }
         // exception genererad
         catch (IllegalArgumentException e1) {
