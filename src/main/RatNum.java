@@ -368,6 +368,12 @@ public class RatNum {
         return new RatNum(numerator * ratNum.denominator, denominator * ratNum.numerator, true);
     }
 
+    public RatNum pow(RatNum ratNum){
+        RatNum numeratorFrac = new RatNum(Math.pow(numerator,ratNum.toDouble()));
+        RatNum denominatorFrac = new RatNum(Math.pow(denominator,ratNum.toDouble()));
+        return new RatNum(numeratorFrac.numerator*denominatorFrac.denominator,numeratorFrac.denominator*denominatorFrac.numerator);
+    }
+
     @Override
     public String toString() {
         return (denominator == 1) ? "" + numerator : numerator + "/" + denominator;
