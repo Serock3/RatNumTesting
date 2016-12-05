@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6063c5be-60b0-4972-bc6d-a1fa46ca34b2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/RatNum.java" afterPath="$PROJECT_DIR$/src/main/RatNum.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/Operator.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/RatNumTesting/main/ArithmeticalOperator.class" afterPath="$PROJECT_DIR$/out/production/RatNumTesting/main/ArithmeticalOperator.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/RatNumTesting/main/RatNum.class" afterPath="$PROJECT_DIR$/out/production/RatNumTesting/main/RatNum.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/ArithmeticalOperator.java" afterPath="$PROJECT_DIR$/src/main/ArithmeticalOperator.java" />
     </list>
     <ignored path="RatNumTesting.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,7 +31,7 @@
       <file leaf-file-name="MainMenu.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/MainMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
+            <state relative-caret-position="119">
               <caret line="7" column="54" lean-forward="false" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
               <folding />
             </state>
@@ -37,8 +41,8 @@
       <file leaf-file-name="RatNum.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/RatNum.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="400" column="30" lean-forward="false" selection-start-line="400" selection-start-column="30" selection-end-line="400" selection-end-column="30" />
+            <state relative-caret-position="2669">
+              <caret line="464" column="30" lean-forward="false" selection-start-line="464" selection-start-column="30" selection-end-line="464" selection-end-column="30" />
               <folding>
                 <element signature="docComment;class#RatNum#0" expanded="false" />
                 <element signature="docComment;method#RatNum#0;class#RatNum#0" expanded="false" />
@@ -48,21 +52,14 @@
                 <element signature="method#RatNum#4;class#RatNum#0" expanded="false" />
                 <element signature="method#RatNum#5;class#RatNum#0" expanded="false" />
                 <element signature="method#RatNum#6;class#RatNum#0" expanded="false" />
-                <element signature="docComment;method#evalExprWell2#0;class#RatNum#0" expanded="false" />
+                <element signature="method#trim#0;class#RatNum#0" expanded="false" />
                 <element signature="method#evalExprWell2#0;class#RatNum#0" expanded="false" />
                 <element signature="method#parenthesisTrim#0;class#RatNum#0" expanded="false" />
                 <element signature="method#findNextOperator#0;class#RatNum#0" expanded="false" />
                 <element signature="method#calcExpr#0;class#RatNum#0" expanded="false" />
+                <element signature="docComment;method#gcd#0;class#RatNum#0" expanded="false" />
                 <element signature="method#gcd#0;class#RatNum#0" expanded="false" />
                 <element signature="method#evalExpr#0;class#RatNum#0" expanded="false" />
-                <element signature="method#add#0;class#RatNum#0" expanded="false" />
-                <element signature="method#sub#0;class#RatNum#0" expanded="false" />
-                <element signature="method#mul#0;class#RatNum#0" expanded="false" />
-                <element signature="method#div#0;class#RatNum#0" expanded="false" />
-                <element signature="method#clone#0;class#RatNum#0" expanded="false" />
-                <element signature="method#setDenominator#1;class#RatNum#0" expanded="false" />
-                <element signature="method#setNumerator#1;class#RatNum#0" expanded="false" />
-                <element signature="method#setBoth#1;class#RatNum#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -71,7 +68,7 @@
       <file leaf-file-name="RatNumTest1.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/RatNumTest1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="787">
+            <state relative-caret-position="659">
               <caret line="57" column="24" lean-forward="false" selection-start-line="57" selection-start-column="24" selection-end-line="57" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -83,7 +80,7 @@
       <file leaf-file-name="RatNumTest2.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/RatNumTest2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
+            <state relative-caret-position="153">
               <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
               <folding />
             </state>
@@ -93,18 +90,8 @@
       <file leaf-file-name="ArithmeticalOperator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/ArithmeticalOperator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Operator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/Operator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="7" column="4" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+            <state relative-caret-position="289">
+              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -155,9 +142,9 @@
         <option value="$PROJECT_DIR$/src/main/ExtendedMath.java" />
         <option value="$PROJECT_DIR$/src/test/RatNumTest1.java" />
         <option value="$PROJECT_DIR$/src/main/RatNumTest2.java" />
-        <option value="$PROJECT_DIR$/src/main/ArithmeticalOperator.java" />
         <option value="$PROJECT_DIR$/src/main/MainMenu.java" />
         <option value="$PROJECT_DIR$/src/main/RatNum.java" />
+        <option value="$PROJECT_DIR$/src/main/ArithmeticalOperator.java" />
       </list>
     </option>
   </component>
@@ -188,7 +175,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -219,8 +205,31 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RatNumTesting" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RatNumTesting" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ArithmeticalOperator.java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
@@ -738,45 +747,46 @@
       <workItem from="1480616139791" duration="687000" />
       <workItem from="1480679094103" duration="2304000" />
       <workItem from="1480950594663" duration="213000" />
+      <workItem from="1480952116634" duration="319000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78943000" />
+    <option name="totallyTimeSpent" value="79262000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769555" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21039128" sideWeight="0.50365496" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21035941" sideWeight="0.49634504" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21035941" sideWeight="0.49634504" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969853" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18802084" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769555" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39957717" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39957717" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769555" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32841566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -834,21 +844,14 @@
             <element signature="method#RatNum#4;class#RatNum#0" expanded="false" />
             <element signature="method#RatNum#5;class#RatNum#0" expanded="false" />
             <element signature="method#RatNum#6;class#RatNum#0" expanded="false" />
-            <element signature="docComment;method#evalExprWell2#0;class#RatNum#0" expanded="false" />
+            <element signature="method#trim#0;class#RatNum#0" expanded="false" />
             <element signature="method#evalExprWell2#0;class#RatNum#0" expanded="false" />
             <element signature="method#parenthesisTrim#0;class#RatNum#0" expanded="false" />
             <element signature="method#findNextOperator#0;class#RatNum#0" expanded="false" />
             <element signature="method#calcExpr#0;class#RatNum#0" expanded="false" />
+            <element signature="docComment;method#gcd#0;class#RatNum#0" expanded="false" />
             <element signature="method#gcd#0;class#RatNum#0" expanded="false" />
             <element signature="method#evalExpr#0;class#RatNum#0" expanded="false" />
-            <element signature="method#add#0;class#RatNum#0" expanded="false" />
-            <element signature="method#sub#0;class#RatNum#0" expanded="false" />
-            <element signature="method#mul#0;class#RatNum#0" expanded="false" />
-            <element signature="method#div#0;class#RatNum#0" expanded="false" />
-            <element signature="method#clone#0;class#RatNum#0" expanded="false" />
-            <element signature="method#setDenominator#1;class#RatNum#0" expanded="false" />
-            <element signature="method#setNumerator#1;class#RatNum#0" expanded="false" />
-            <element signature="method#setBoth#1;class#RatNum#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -883,21 +886,14 @@
             <element signature="method#RatNum#4;class#RatNum#0" expanded="false" />
             <element signature="method#RatNum#5;class#RatNum#0" expanded="false" />
             <element signature="method#RatNum#6;class#RatNum#0" expanded="false" />
-            <element signature="docComment;method#evalExprWell2#0;class#RatNum#0" expanded="false" />
+            <element signature="method#trim#0;class#RatNum#0" expanded="false" />
             <element signature="method#evalExprWell2#0;class#RatNum#0" expanded="false" />
             <element signature="method#parenthesisTrim#0;class#RatNum#0" expanded="false" />
             <element signature="method#findNextOperator#0;class#RatNum#0" expanded="false" />
             <element signature="method#calcExpr#0;class#RatNum#0" expanded="false" />
+            <element signature="docComment;method#gcd#0;class#RatNum#0" expanded="false" />
             <element signature="method#gcd#0;class#RatNum#0" expanded="false" />
             <element signature="method#evalExpr#0;class#RatNum#0" expanded="false" />
-            <element signature="method#add#0;class#RatNum#0" expanded="false" />
-            <element signature="method#sub#0;class#RatNum#0" expanded="false" />
-            <element signature="method#mul#0;class#RatNum#0" expanded="false" />
-            <element signature="method#div#0;class#RatNum#0" expanded="false" />
-            <element signature="method#clone#0;class#RatNum#0" expanded="false" />
-            <element signature="method#setDenominator#1;class#RatNum#0" expanded="false" />
-            <element signature="method#setNumerator#1;class#RatNum#0" expanded="false" />
-            <element signature="method#setBoth#1;class#RatNum#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -940,21 +936,14 @@
             <element signature="method#RatNum#4;class#RatNum#0" expanded="false" />
             <element signature="method#RatNum#5;class#RatNum#0" expanded="false" />
             <element signature="method#RatNum#6;class#RatNum#0" expanded="false" />
-            <element signature="docComment;method#evalExprWell2#0;class#RatNum#0" expanded="false" />
+            <element signature="method#trim#0;class#RatNum#0" expanded="false" />
             <element signature="method#evalExprWell2#0;class#RatNum#0" expanded="false" />
             <element signature="method#parenthesisTrim#0;class#RatNum#0" expanded="false" />
             <element signature="method#findNextOperator#0;class#RatNum#0" expanded="false" />
             <element signature="method#calcExpr#0;class#RatNum#0" expanded="false" />
+            <element signature="docComment;method#gcd#0;class#RatNum#0" expanded="false" />
             <element signature="method#gcd#0;class#RatNum#0" expanded="false" />
             <element signature="method#evalExpr#0;class#RatNum#0" expanded="false" />
-            <element signature="method#add#0;class#RatNum#0" expanded="false" />
-            <element signature="method#sub#0;class#RatNum#0" expanded="false" />
-            <element signature="method#mul#0;class#RatNum#0" expanded="false" />
-            <element signature="method#div#0;class#RatNum#0" expanded="false" />
-            <element signature="method#clone#0;class#RatNum#0" expanded="false" />
-            <element signature="method#setDenominator#1;class#RatNum#0" expanded="false" />
-            <element signature="method#setNumerator#1;class#RatNum#0" expanded="false" />
-            <element signature="method#setBoth#1;class#RatNum#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -999,21 +988,14 @@
             <element signature="method#RatNum#4;class#RatNum#0" expanded="false" />
             <element signature="method#RatNum#5;class#RatNum#0" expanded="false" />
             <element signature="method#RatNum#6;class#RatNum#0" expanded="false" />
-            <element signature="docComment;method#evalExprWell2#0;class#RatNum#0" expanded="false" />
+            <element signature="method#trim#0;class#RatNum#0" expanded="false" />
             <element signature="method#evalExprWell2#0;class#RatNum#0" expanded="false" />
             <element signature="method#parenthesisTrim#0;class#RatNum#0" expanded="false" />
             <element signature="method#findNextOperator#0;class#RatNum#0" expanded="false" />
             <element signature="method#calcExpr#0;class#RatNum#0" expanded="false" />
+            <element signature="docComment;method#gcd#0;class#RatNum#0" expanded="false" />
             <element signature="method#gcd#0;class#RatNum#0" expanded="false" />
             <element signature="method#evalExpr#0;class#RatNum#0" expanded="false" />
-            <element signature="method#add#0;class#RatNum#0" expanded="false" />
-            <element signature="method#sub#0;class#RatNum#0" expanded="false" />
-            <element signature="method#mul#0;class#RatNum#0" expanded="false" />
-            <element signature="method#div#0;class#RatNum#0" expanded="false" />
-            <element signature="method#clone#0;class#RatNum#0" expanded="false" />
-            <element signature="method#setDenominator#1;class#RatNum#0" expanded="false" />
-            <element signature="method#setNumerator#1;class#RatNum#0" expanded="false" />
-            <element signature="method#setBoth#1;class#RatNum#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1039,21 +1021,14 @@
             <element signature="method#RatNum#4;class#RatNum#0" expanded="false" />
             <element signature="method#RatNum#5;class#RatNum#0" expanded="false" />
             <element signature="method#RatNum#6;class#RatNum#0" expanded="false" />
-            <element signature="docComment;method#evalExprWell2#0;class#RatNum#0" expanded="false" />
+            <element signature="method#trim#0;class#RatNum#0" expanded="false" />
             <element signature="method#evalExprWell2#0;class#RatNum#0" expanded="false" />
             <element signature="method#parenthesisTrim#0;class#RatNum#0" expanded="false" />
             <element signature="method#findNextOperator#0;class#RatNum#0" expanded="false" />
             <element signature="method#calcExpr#0;class#RatNum#0" expanded="false" />
+            <element signature="docComment;method#gcd#0;class#RatNum#0" expanded="false" />
             <element signature="method#gcd#0;class#RatNum#0" expanded="false" />
             <element signature="method#evalExpr#0;class#RatNum#0" expanded="false" />
-            <element signature="method#add#0;class#RatNum#0" expanded="false" />
-            <element signature="method#sub#0;class#RatNum#0" expanded="false" />
-            <element signature="method#mul#0;class#RatNum#0" expanded="false" />
-            <element signature="method#div#0;class#RatNum#0" expanded="false" />
-            <element signature="method#clone#0;class#RatNum#0" expanded="false" />
-            <element signature="method#setDenominator#1;class#RatNum#0" expanded="false" />
-            <element signature="method#setNumerator#1;class#RatNum#0" expanded="false" />
-            <element signature="method#setBoth#1;class#RatNum#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1080,21 +1055,14 @@
             <element signature="method#RatNum#4;class#RatNum#0" expanded="false" />
             <element signature="method#RatNum#5;class#RatNum#0" expanded="false" />
             <element signature="method#RatNum#6;class#RatNum#0" expanded="false" />
-            <element signature="docComment;method#evalExprWell2#0;class#RatNum#0" expanded="false" />
+            <element signature="method#trim#0;class#RatNum#0" expanded="false" />
             <element signature="method#evalExprWell2#0;class#RatNum#0" expanded="false" />
             <element signature="method#parenthesisTrim#0;class#RatNum#0" expanded="false" />
             <element signature="method#findNextOperator#0;class#RatNum#0" expanded="false" />
             <element signature="method#calcExpr#0;class#RatNum#0" expanded="false" />
+            <element signature="docComment;method#gcd#0;class#RatNum#0" expanded="false" />
             <element signature="method#gcd#0;class#RatNum#0" expanded="false" />
             <element signature="method#evalExpr#0;class#RatNum#0" expanded="false" />
-            <element signature="method#add#0;class#RatNum#0" expanded="false" />
-            <element signature="method#sub#0;class#RatNum#0" expanded="false" />
-            <element signature="method#mul#0;class#RatNum#0" expanded="false" />
-            <element signature="method#div#0;class#RatNum#0" expanded="false" />
-            <element signature="method#clone#0;class#RatNum#0" expanded="false" />
-            <element signature="method#setDenominator#1;class#RatNum#0" expanded="false" />
-            <element signature="method#setNumerator#1;class#RatNum#0" expanded="false" />
-            <element signature="method#setBoth#1;class#RatNum#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1129,21 +1097,14 @@
             <element signature="method#RatNum#4;class#RatNum#0" expanded="false" />
             <element signature="method#RatNum#5;class#RatNum#0" expanded="false" />
             <element signature="method#RatNum#6;class#RatNum#0" expanded="false" />
-            <element signature="docComment;method#evalExprWell2#0;class#RatNum#0" expanded="false" />
+            <element signature="method#trim#0;class#RatNum#0" expanded="false" />
             <element signature="method#evalExprWell2#0;class#RatNum#0" expanded="false" />
             <element signature="method#parenthesisTrim#0;class#RatNum#0" expanded="false" />
             <element signature="method#findNextOperator#0;class#RatNum#0" expanded="false" />
             <element signature="method#calcExpr#0;class#RatNum#0" expanded="false" />
+            <element signature="docComment;method#gcd#0;class#RatNum#0" expanded="false" />
             <element signature="method#gcd#0;class#RatNum#0" expanded="false" />
             <element signature="method#evalExpr#0;class#RatNum#0" expanded="false" />
-            <element signature="method#add#0;class#RatNum#0" expanded="false" />
-            <element signature="method#sub#0;class#RatNum#0" expanded="false" />
-            <element signature="method#mul#0;class#RatNum#0" expanded="false" />
-            <element signature="method#div#0;class#RatNum#0" expanded="false" />
-            <element signature="method#clone#0;class#RatNum#0" expanded="false" />
-            <element signature="method#setDenominator#1;class#RatNum#0" expanded="false" />
-            <element signature="method#setNumerator#1;class#RatNum#0" expanded="false" />
-            <element signature="method#setBoth#1;class#RatNum#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1210,39 +1171,15 @@
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/lang/IllegalArgumentException.java" />
     <entry file="file://$PROJECT_DIR$/src/main/RatNumTest2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
+        <state relative-caret-position="153">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ArithmeticalOperator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Operator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="4" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/MainMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="54" lean-forward="false" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/RatNumTest1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="787">
+        <state relative-caret-position="659">
           <caret line="57" column="24" lean-forward="false" selection-start-line="57" selection-start-column="24" selection-end-line="57" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1250,10 +1187,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/ArithmeticalOperator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Operator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/MainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="54" lean-forward="false" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/RatNum.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="400" column="30" lean-forward="false" selection-start-line="400" selection-start-column="30" selection-end-line="400" selection-end-column="30" />
+        <state relative-caret-position="2669">
+          <caret line="464" column="30" lean-forward="false" selection-start-line="464" selection-start-column="30" selection-end-line="464" selection-end-column="30" />
           <folding>
             <element signature="docComment;class#RatNum#0" expanded="false" />
             <element signature="docComment;method#RatNum#0;class#RatNum#0" expanded="false" />
@@ -1263,21 +1224,14 @@
             <element signature="method#RatNum#4;class#RatNum#0" expanded="false" />
             <element signature="method#RatNum#5;class#RatNum#0" expanded="false" />
             <element signature="method#RatNum#6;class#RatNum#0" expanded="false" />
-            <element signature="docComment;method#evalExprWell2#0;class#RatNum#0" expanded="false" />
+            <element signature="method#trim#0;class#RatNum#0" expanded="false" />
             <element signature="method#evalExprWell2#0;class#RatNum#0" expanded="false" />
             <element signature="method#parenthesisTrim#0;class#RatNum#0" expanded="false" />
             <element signature="method#findNextOperator#0;class#RatNum#0" expanded="false" />
             <element signature="method#calcExpr#0;class#RatNum#0" expanded="false" />
+            <element signature="docComment;method#gcd#0;class#RatNum#0" expanded="false" />
             <element signature="method#gcd#0;class#RatNum#0" expanded="false" />
             <element signature="method#evalExpr#0;class#RatNum#0" expanded="false" />
-            <element signature="method#add#0;class#RatNum#0" expanded="false" />
-            <element signature="method#sub#0;class#RatNum#0" expanded="false" />
-            <element signature="method#mul#0;class#RatNum#0" expanded="false" />
-            <element signature="method#div#0;class#RatNum#0" expanded="false" />
-            <element signature="method#clone#0;class#RatNum#0" expanded="false" />
-            <element signature="method#setDenominator#1;class#RatNum#0" expanded="false" />
-            <element signature="method#setNumerator#1;class#RatNum#0" expanded="false" />
-            <element signature="method#setBoth#1;class#RatNum#0" expanded="false" />
           </folding>
         </state>
       </provider>
