@@ -232,6 +232,12 @@ public class RatNum {
         return ratArray.get(0);
     }
 
+    /**
+     * Calculates the greatest common divisor of two numbers.
+     * @param a The first number.
+     * @param b The second number.
+     * @return Returns the greatest common divisor.
+     */
     //Public methods
     public static int gcd(int a, int b){
         if(a==0 && b==0){
@@ -343,92 +349,188 @@ public class RatNum {
         return "Input:\t" + input + "\n" + "Simp:\t" + text + "\n" + "Eval:\t" + response;
     }
 
+    /**
+     * Simply calls the method evalExprWell2 which will parse and calculate according to mathematical standards.
+     * @param expr The string which to be parsed.
+     * @return Returns the parsed and calculated string as a new string.
+     */
     public static String evalExprWell(String expr) {
         return evalExprWell2(expr).toString();
     }
 
+    /**
+     * Simply calls the constructor which will parse a string and therefrom create the RatNum object.
+     * @param parseStr The string to be parsed.
+     * @return Returns the new RatNum.
+     */
     public static RatNum parse(String parseStr) {
         return new RatNum(parseStr);
     }
 
+    /**
+     * Adds the current RatNum with the passed RatNum.
+     * @param ratNum The RatNum to add to the current RatNum.
+     * @return Returns a new RatNum with the calculated value.
+     */
     public RatNum add(RatNum ratNum) {
         return new RatNum(numerator * ratNum.denominator + ratNum.numerator * denominator, denominator * ratNum.denominator, true);
     }
 
+    /**
+     * Subtracts the current RatNum with the passed RatNum.
+     * @param ratNum The RatNum to subtract from the current RatNum.
+     * @return Returns a new RatNum with the calculated value.
+     */
     public RatNum sub(RatNum ratNum) {
         return new RatNum(numerator * ratNum.denominator - ratNum.numerator * denominator, denominator * ratNum.denominator, true);
     }
 
+    /**
+     * Multiplies the current RatNum with the passed RatNum.
+     * @param ratNum The RatNum to multiply the current RatNum with.
+     * @return Returns a new RatNum with the calculated value.
+     */
     public RatNum mul(RatNum ratNum) {
         return new RatNum(numerator * ratNum.numerator, denominator * ratNum.denominator, true);
     }
 
+    /**
+     * Divides the current object with the passed argument RatNum.
+     * @param ratNum The RatNum to divide with.
+     * @return Returns a new RatNum with the calculated value.
+     * @throws ArithmeticException This error will be thrown if division with 0 is attempted.
+     */
     public RatNum div(RatNum ratNum) throws ArithmeticException {
         if (ratNum.numerator == 0) throw new ArithmeticException("Division by zero");
         return new RatNum(numerator * ratNum.denominator, denominator * ratNum.numerator, true);
     }
 
+    /**
+     * Powers the current RatNum with the given RatNum object. For example, passing a RatNum of the value 2 will square the current RatNum.
+     * @param ratNum The power.
+     * @return Returns the powered RatNum.
+     */
     public RatNum pow(RatNum ratNum){
         RatNum numeratorFrac = new RatNum(Math.pow(numerator,ratNum.toDouble()));
         RatNum denominatorFrac = new RatNum(Math.pow(denominator,ratNum.toDouble()));
         return new RatNum(numeratorFrac.numerator*denominatorFrac.denominator,numeratorFrac.denominator*denominatorFrac.numerator);
     }
 
+    /**
+     * Converts the object into a predefined string. In this case the string will look like, "numerator"/"denominator".
+     * @return Returns the string.
+     */
     @Override
     public String toString() {
         return (denominator == 1) ? "" + numerator : numerator + "/" + denominator;
     }
 
+    /**
+     * Checks whether the object is equal to this object and returns true if it is.
+     * @param obj Another object to be compared to this.
+     * @return Returns true if the objects are equal, otherwise false.
+     */
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
     }
 
+    /**
+     * Returns a new copy of the current object.
+     * @return The copy.
+     * @throws CloneNotSupportedException This exception will be thrown in the copy fails.
+     */
     @Override
     protected Object clone() throws CloneNotSupportedException {
         return new RatNum(this);
     }
 
+    /**
+     * Checks whether the current object is less than the parameter.
+     * @param ratNum The parameter to be compared with this.
+     * @return Returns true if the current object is less than the given object.
+     */
     public boolean lessThan(RatNum ratNum) {
         return numerator * ratNum.denominator < ratNum.numerator * denominator;
     }
 
+    /**
+     * Converts the RatNum object into a double.
+     * @return Returns the double.
+     */
     public double toDouble() {
         return (double) numerator / (double) denominator;
     }
 
     //Getters and setters (including private)
 
+    /**
+     * Getter for the denominator.
+     * @return Returns the denominator in form of an int.
+     */
     public int getDenominator() {
         return denominator;
     }
 
+    /**
+     * Setter for the denominator. Thil will also immediately simplify the RatNum.
+     * @param denominator The new value to be set.
+     */
     public void setDenominator(int denominator) {
         setDenominator(denominator, true);
     }
 
+    /**
+     * Setter for the denominator with optional simplification.
+     * @param denominator The new value for the denominator.
+     * @param trim Boolean value, the method will skip simplifying if this is set to false.
+     */
     private void setDenominator(int denominator, boolean trim) {
         this.denominator = denominator;
         if (trim) trim(this);
     }
 
+    /**
+     * Getter for the numerator.
+     * @return Returns the numerator as an int.
+     */
     public int getNumerator() {
         return numerator;
     }
 
+    /**
+     * Setter for the numerator. This will also immediately simplify the RatNum.
+     * @param numerator The int value for the new numerator.
+     */
     public void setNumerator(int numerator) {
         setNumerator(numerator, true);
     }
 
+    /**
+     * Setter for the numerator with optional simplification.
+     * @param numerator The int value for the new numerator.
+     * @param trim Boolean value, the method will skip simplifying if this is set to false.
+     */
     private void setNumerator(int numerator, boolean trim) {
         this.numerator = numerator;
         if (trim) trim(this);
     }
 
+    /**
+     * Sets both the numerator and the denominator at the same time. This will also immediately simplify the RatNum.
+     * @param numerator The int value of the new numerator.
+     * @param denominator The inte value of the new denominator.
+     */
     public void setBoth(int numerator, int denominator) {
         setBoth(numerator, denominator, true);
     }
 
+    /**
+     * Setter for the both the numerator and the denominator with optional simplification.
+     * @param numerator The int value for the new numerator.
+     * @param denominator The int value for the new denominator.
+     * @param trim Boolean value, the method will skip simplifying if this is set to false.
+     */
     private void setBoth(int numerator, int denominator, boolean trim) {
         setNumerator(numerator, trim);
         setDenominator(denominator, trim);
