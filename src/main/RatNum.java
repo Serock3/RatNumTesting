@@ -18,27 +18,41 @@ public class RatNum {
     //Constructors
 
     /**
-     * Private constructor with option to skip trimming
-     *
-     * @param numerator
-     * @param denominator
-     * @param trim        true:trim during construction, false: don't
+     * Constructor which sets the numerator and denominator according to the given parameters and also includes the option to skip the immediate
+     * simplification.
+     * @param numerator The int value of the numerator.
+     * @param denominator The int value of the denominator.
+     * @param trim Boolean value, will skip simplify immediately if set to false.
+     * @throws NumberFormatException
      */
     private RatNum(int numerator, int denominator, boolean trim) throws NumberFormatException {
         if (denominator == 0) throw new NumberFormatException("Denominator is 0");
         this.numerator = numerator;
         this.denominator = denominator;
-        if (trim) trim(this);
+        if (trim) simplify(this);
     }
 
+    /**
+     * Constructor which sets the numerator and denominator according to the given parameters, this will also immediately simplify the RatNum.
+     * @param numerator The int value of the numerator.
+     * @param denominator The int value of the denominator.
+     */
     public RatNum(int numerator, int denominator) {
         this(numerator, denominator, true);
     }
 
+    /**
+     * Constructor which sets the numerator accourding to the parameter and the denominator to 1.
+     * @param numerator
+     */
     public RatNum(int numerator) {
         this(numerator, 1);
     }
 
+    /**
+     * Copy constructor.
+     * @param rat The RatNum to be copied.
+     */
     public RatNum(RatNum rat) {
         this(rat.getNumerator(), rat.getDenominator());
     }
@@ -47,9 +61,8 @@ public class RatNum {
     //TODO: add option for rounding, such that 0.3333333 -> 1/3
 
     /**
-     * Accurately converts a double to a fraction with no rounding, using BigDecimal
-     *
-     * @param db double to be converted to a fraction
+     * Creates a RatNum from a given double value. NOTE: This sometimes fails.
+     * @param db The double value to be coverted into a RatNum.
      */
     public RatNum(double db) {
         String s = String.valueOf(db);
@@ -59,9 +72,14 @@ public class RatNum {
         BigDecimal d2 = d1.setScale(0, RoundingMode.HALF_UP);
         setNumerator(d2.intValue(), false);
         setDenominator((int) Math.pow(10, decimalAmount), false);
-        trim(this);
+        simplify(this);
     }
 
+    /**
+     * Parses a string and creates a RatNum from text. Also making sure the RatNum is valid.
+     * @param parseStr The string to be parsed into a RatNum.
+     * @throws NumberFormatException Will be thrown if there are formatting errors in the given string.
+     */
     public RatNum(String parseStr) throws NumberFormatException {
         parseStr = parseStr.trim();
 
@@ -75,7 +93,7 @@ public class RatNum {
             try {
                 numerator = Integer.parseInt(cutStrings[0]);
                 denominator = Integer.parseInt(cutStrings[1]);
-                trim(this);
+                simplify(this);
             } catch (NumberFormatException e) {
                 e.printStackTrace();
                 System.err.print("Incorrect formatting on fraction " + parseStr);
@@ -99,6 +117,9 @@ public class RatNum {
         }
     }
 
+    /**
+     * Default constructor will set the numerator to zero and the denominator to 1.
+     */
     public RatNum() {
         numerator = 0;
         denominator = 1;
@@ -106,7 +127,13 @@ public class RatNum {
 
     //private methods
 
-    private static RatNum trim(RatNum ratNum) throws IllegalArgumentException {
+    /**
+     * Simplifies the given RatNum and performs some error checking to make sure the RatNum follows mathematical rules, for example no zero-denominator.
+     * @param ratNum The RatNum to be simplified.
+     * @return Returns a new simplified RatNum.
+     * @throws IllegalArgumentException Will be thrown if the denominator is zero.
+     */
+    private static RatNum simplify(RatNum ratNum) throws IllegalArgumentException {
         int n = ratNum.numerator;
         int d = ratNum.denominator;
 
@@ -142,6 +169,12 @@ public class RatNum {
      * @return
      */
 
+    /**
+     * This will return a RatNum of the calculated expression. This will count according to mathematical standards which means spaces do not count
+     * as parenthesis and instead explicit parenthesis are needed. For example, "5/2 / 6/5" will be calculated as "((5/6)/6)/5".
+     * @param expr
+     * @return
+     */
     public static RatNum evalExprWell2(String expr) {
         //Removes all whitespace from the string
         expr = expr.replaceAll("\\s", "");
@@ -183,6 +216,12 @@ public class RatNum {
         throw new NumberFormatException("Expression end with an operator or is empty");
     }
 
+    /**
+     * Trims a given string containing parenthesis, starting from param startindex and ending at related closing parenthesis.
+     * @param expr The expression as to be trimmed as a string.
+     * @param startindex The index where to start trimming the parenthesis.
+     * @return Returns the trimmed string.
+     */
     //returns the trimmed string and the index of the respective end parenthesis
     public static String parenthesisTrim(String expr, int startindex) {
         if (expr.charAt(startindex) != '(')
@@ -198,6 +237,12 @@ public class RatNum {
         throw new IllegalArgumentException("Amount of closing and opening parenthesises are not equal");
     }
 
+    /**
+     * Finds the first occurence of an ArithmeticalOperator, returns the index and the operator.
+     * @param expr The string to be parsed.
+     * @param startindex Index where to start looking for an operator in the given string.
+     * @return Returns the index and the operator as a Pair. Returns -1 if no operator found.
+     */
     //finds the first occurrence of an ArithmeticalOperator, returns the index and the operator, if no operator is found then the index returned is -1
     public static Pair<ArithmeticalOperator, Integer> findNextOperator(String expr, int startindex) {
         int i = 1000000;
@@ -216,6 +261,12 @@ public class RatNum {
         return new Pair<>(firstOperator, i);
     }
 
+    /**
+     * Calculates the given the two ArrayLists of terms and operators.
+     * @param ratArray The array of terms.
+     * @param operatorArray The array of operators.
+     * @return Returns the calculated value, i.e. the only element left after all terms have been simplified into one.
+     */
     private static RatNum calcExpr(ArrayList<RatNum> ratArray, ArrayList<ArithmeticalOperator> operatorArray) {
         if (ratArray.size() - operatorArray.size() != 1) {
             System.out.print(ratArray);
@@ -252,6 +303,11 @@ public class RatNum {
         return a;
     }
 
+    /**
+     * Parses and evalutates a given string according to the instructions for the task. This will consider blank spaces as parentheses.
+     * @param text The text to be parsed.
+     * @return Returns the evaluated answer. If the expression contains a comparison operator it will return true or false.
+     */
     static String evalExpr(String text) {
         // The first part of this method calculates all the terms together,
         // taking order of operations into account and then calculating from left to right.
@@ -487,7 +543,7 @@ public class RatNum {
      */
     private void setDenominator(int denominator, boolean trim) {
         this.denominator = denominator;
-        if (trim) trim(this);
+        if (trim) simplify(this);
     }
 
     /**
@@ -513,7 +569,7 @@ public class RatNum {
      */
     private void setNumerator(int numerator, boolean trim) {
         this.numerator = numerator;
-        if (trim) trim(this);
+        if (trim) simplify(this);
     }
 
     /**
