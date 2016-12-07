@@ -95,8 +95,7 @@ public class RatNum {
                 denominator = Integer.parseInt(cutStrings[1]);
                 simplify(this);
             } catch (NumberFormatException e) {
-                e.printStackTrace();
-                System.err.print("Incorrect formatting on fraction " + parseStr);
+                throw new NumberFormatException("Incorrect formatting on fraction " + parseStr);
             }
 
             //Case two: decimal expantion
@@ -105,8 +104,7 @@ public class RatNum {
             numerator = tmpRat.numerator;
             denominator = tmpRat.denominator;
         } catch (NumberFormatException e) {
-            e.printStackTrace();
-            System.err.print("Incorrect formatting on double " + parseStr);
+            throw new NumberFormatException("Incorrect formatting on double " + parseStr);
         }
 
             //Case tree; sole number
@@ -137,8 +135,8 @@ public class RatNum {
         int n = ratNum.numerator;
         int d = ratNum.denominator;
 
-        if (d == 0) {
-            throw new IllegalArgumentException("Denominator is 0");
+        if (d == 0 && n == 0) {
+            throw new IllegalArgumentException("both_zero");
         }
         if (n == 0) {
             ratNum.setDenominator(1, false);
@@ -305,6 +303,7 @@ public class RatNum {
 
     /**
      * Parses and evalutates a given string according to the instructions for the task. This will consider blank spaces as parentheses.
+     * Note that this method allows for an indefinite amount of terms and is NOT limited to just two.
      * @param text The text to be parsed.
      * @return Returns the evaluated answer. If the expression contains a comparison operator it will return true or false.
      */
@@ -312,97 +311,115 @@ public class RatNum {
         // The first part of this method calculates all the terms together,
         // taking order of operations into account and then calculating from left to right.
 
-        String input = text;
+        String response = "";
 
-        String[] parts = null;
-        String[] operators = {"*", "/", "+", "-", "<", ">", "!=", "=="};
+        try {
+            String input = text;
 
-        int found;
+            String[] parts = null;
+            String[] operators = {"*", "/", "+", "-", "<", ">", "!=", "="};
 
-        do {
-            found = 0;
+            int found;
 
-            for (int o = 0; o < 4; o += 2) {
-                if (found == 0) {
-                    parts = text.split(" ");
+            do {
+                found = 0;
 
-                    text = "";
+                for (int o = 0; o < 4; o += 2) {
+                    if (found == 0) {
+                        parts = text.split(" ");
 
-                    for (int i = 0; i < parts.length; i++) {
-                        if (i < parts.length - 1 && (parts[i + 1].equals(operators[o]) || parts[i + 1].equals(operators[o + 1])) && found == 0) {
+                        text = "";
 
-                            // Since multiplication and division have the same priority and both of them are checked in the if-statement above,
-                            // I have to do a check which one of them that was triggered. The same goes for addition and subtraction.
+                        for (int i = 0; i < parts.length; i++) {
+                            if (i < parts.length - 1 && (parts[i + 1].equals(operators[o]) || parts[i + 1].equals(operators[o + 1])) && found == 0) {
 
-                            int mod;
-                            if (parts[i + 1].equals(operators[o])) {
-                                mod = 0;
-                            } else {
-                                mod = 1;
-                            }
+                                // Since multiplication and division have the same priority and both of them are checked in the if-statement above,
+                                // I have to do a check which one of them that was triggered. The same goes for addition and subtraction.
 
-                            switch (operators[o + mod]) {
-                                case "*":
-                                    text += parse(parts[i]).mul(parse(parts[i + 2])) + " ";
-                                    break;
-                                case "/":
-                                    text += parse(parts[i]).div(parse(parts[i + 2])) + " ";
-                                    break;
-                                case "+":
-                                    text += parse(parts[i]).add(parse(parts[i + 2])) + " ";
-                                    break;
-                                case "-":
-                                    text += parse(parts[i]).sub(parse(parts[i + 2])) + " ";
-                                    break;
-                            }
-
-                            found = i + 1;
-
-                            // If there isn't an operator at the current field, and it's not included into the newly calculated two terms I'll just keep it as it is.
-                        } else {
-                            if (Math.abs(found - i) > 1 || found == 0) {
-                                boolean justadd = false;
-
-                                for (String op : operators) {
-                                    if (op.equals(parts[i]))
-                                        justadd = true;
+                                int mod;
+                                if (parts[i + 1].equals(operators[o])) {
+                                    mod = 0;
+                                } else {
+                                    mod = 1;
                                 }
 
-                                if (justadd)
-                                    text += parts[i] + " ";
-                                else
-                                    text += parse(parts[i]) + " ";
+                                switch (operators[o + mod]) {
+                                    case "*":
+                                        text += parse(parts[i]).mul(parse(parts[i + 2])) + " ";
+                                        break;
+                                    case "/":
+                                        text += parse(parts[i]).div(parse(parts[i + 2])) + " ";
+                                        break;
+                                    case "+":
+                                        text += parse(parts[i]).add(parse(parts[i + 2])) + " ";
+                                        break;
+                                    case "-":
+                                        text += parse(parts[i]).sub(parse(parts[i + 2])) + " ";
+                                        break;
+                                }
+
+                                found = i + 1;
+
+                                // If there isn't an operator at the current field, and it's not included into the newly calculated two terms I'll just keep it as it is.
+                            } else {
+                                if (Math.abs(found - i) > 1 || found == 0) {
+                                    boolean justadd = false;
+
+                                    for (String op : operators) {
+                                        if (op.equals(parts[i]))
+                                            justadd = true;
+                                    }
+
+                                    if (justadd)
+                                        text += parts[i] + " ";
+                                    else
+                                        text += parse(parts[i]) + " ";
+                                }
                             }
                         }
                     }
                 }
+            } while (found != 0);
+
+            // Once the string leaves the loop it should be fully simplified and handling of the expression can take place, if there are one.
+
+            // Should only be 3 fields in the array by now, otherwise an unhandled operator went through the parsing.
+            if (parts.length == 3) {
+                switch (parts[1]) {
+                    case "<":
+                        response = (parse(parts[0]).lessThan(parse(parts[2]))) ? "true" : "false";
+                        break;
+                    case ">":
+                        response = (parse(parts[2]).lessThan(parse(parts[0]))) ? "true" : "false";
+                        break;
+                    case "=":
+                        response = (parse(parts[0]).equals(parse(parts[2]))) ? "true" : "false";
+                        break;
+                    case "!=":
+                        response = (parse(parts[0]).equals(parse(parts[2]))) ? "false" : "true";
+                        break;
+                }
+            } else {
+                throw new IllegalArgumentException("evalExp(2): operator wrong or missing");
             }
-        } while (found != 0);
 
-        // Once the string leaves the loop it should be fully simplified and handling of the expression can take place, if there are one.
-
-        String response = "";
-
-        // Should only be 3 fields in the array by now
-
-        if (parts.length == 3) {
-            switch (parts[1]) {
-                case "<":
-                    response = (parse(parts[0]).lessThan(parse(parts[2]))) ? "true" : "false";
-                    break;
-                case ">":
-                    response = (parse(parts[2]).lessThan(parse(parts[0]))) ? "true" : "false";
-                    break;
-                case "=":
-                    response = (parse(parts[0]).equals(parse(parts[2]))) ? "true" : "false";
-                    break;
-                case "!=":
-                    response = (parse(parts[0]).equals(parse(parts[2]))) ? "false" : "true";
+        } catch(NumberFormatException e) {
+            response = "evalExpr error(4): NumberFormatException: " + e.getMessage();
+        } catch(IllegalArgumentException e) {
+            response = e.getMessage();
+        } catch(ArithmeticException e) {
+            switch(e.getMessage()) {
+                case "division_by_zero": response = "evalExpr error(3): in div";
                     break;
             }
+        } catch(Exception e) {
+            response = "evalExpr error(5): Unknown error";
         }
 
-        return "Input:\t" + input + "\n" + "Simp:\t" + text + "\n" + "Eval:\t" + response;
+        if(response.length() == 0)
+            return text;
+        else
+            return response;
     }
 
     /**
@@ -457,7 +474,7 @@ public class RatNum {
      * @throws ArithmeticException This error will be thrown if division with 0 is attempted.
      */
     public RatNum div(RatNum ratNum) throws ArithmeticException {
-        if (ratNum.numerator == 0) throw new ArithmeticException("Division by zero");
+        if (ratNum.numerator == 0) throw new ArithmeticException("division_by_zero");
         return new RatNum(numerator * ratNum.denominator, denominator * ratNum.numerator, true);
     }
 
@@ -482,13 +499,22 @@ public class RatNum {
     }
 
     /**
+     * Converts the object into a predefined string. In this case the string will look like, "whole bits" "remainder"/"denominator".
+     * @return Returns the string.
+     */
+    public String toString2() {
+        int remainder = this.getNumerator() % this.getDenominator();
+        int whole = this.getNumerator() / this.getDenominator();
+        return whole + " " + new RatNum(remainder, this.getDenominator());
+    }
+    /**
      * Checks whether the object is equal to this object and returns true if it is.
      * @param obj Another object to be compared to this.
      * @return Returns true if the objects are equal, otherwise false.
      */
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        return this.getClass() == obj.getClass() && this.getNumerator() * ((RatNum) obj).getDenominator() == ((RatNum) obj).getNumerator() * this.getDenominator();
     }
 
     /**
