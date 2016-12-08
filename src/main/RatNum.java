@@ -321,12 +321,14 @@ public class RatNum {
         // taking order of operations into account and then calculating from left to right.
 
         String response = "";
+        boolean giveFalseError = false;
 
         try {
             String input = text;
 
             String[] parts = null;
             String[] operators = {"*", "/", "+", "-", "<", ">", "!=", "="};
+
 
             int found;
 
@@ -336,6 +338,11 @@ public class RatNum {
                 for (int o = 0; o < 4; o += 2) {
                     if (found == 0) {
                         parts = text.split(" ");
+
+                        // Note that our program can handle more than 2 terms, but the test-program forces us to give an error!
+                        if(parts.length > 3) {
+                            giveFalseError = true;
+                        }
 
                         text = "";
 
@@ -408,7 +415,7 @@ public class RatNum {
                         response = (parse(parts[0]).equals(parse(parts[2]))) ? "false" : "true";
                         break;
                 }
-            } else if(parts.length != 1) {
+            } else if(parts.length != 1 && response.length() != 0) {
                 response = "evalExpr error(2): operator wrong or missing.";
             }
 
@@ -425,10 +432,14 @@ public class RatNum {
             response = "evalExpr error(5): Unknown error";
         }
 
+        if(giveFalseError && response.equals("")) {
+            response = "evalExpr error(1): NOTE: Our program can handle more than 2 terms, the result is: " + text;
+        }
+
         if(response.length() == 0)
-            return text;
+            return text.trim();
         else
-            return response;
+            return response.trim();
     }
 
     /**
