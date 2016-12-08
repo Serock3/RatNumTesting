@@ -440,6 +440,7 @@ public class RatNum {
             return text.trim();
         else
             return response.trim();
+
     }
 
     /**
