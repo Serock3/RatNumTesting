@@ -494,16 +494,14 @@ public class RatNum {
 
     /**
      * Adds the current RatNum with the passed RatNum.
-     *
      * @param ratNum The RatNum to add to the current RatNum.
      * @return Returns a new RatNum with the calculated value.
      */
     public RatNum add(RatNum ratNum) {
         int lcm = lcm(this.getDenominator(), ratNum.getDenominator());
-
-        return new RatNum(numerator * lcm + ratNum.numerator * lcm, denominator * lcm, true);
+        int newNumerator = numerator * lcm/this.getDenominator() + ratNum.numerator * lcm/ratNum.getDenominator();
+        return new RatNum(newNumerator, lcm, true);
     }
-
     /**
      * Subtracts the current RatNum with the passed RatNum.
      *

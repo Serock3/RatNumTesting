@@ -43,7 +43,7 @@ public class TestRatNum4EH {
     // controlling printouts
     // v0 = none of the below, guru mode => print only existance or nbr of errors
     private static boolean verboseError = true; // v1, print only errors
-    private static boolean verbose = false; // v2, long printouts, default, includes v1
+    private static boolean verbose = true; // v2, long printouts, default, includes v1
     private static boolean debug = false;  // v3, for debugging only, implies v1 and v2
 
     // local

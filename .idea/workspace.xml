@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6063c5be-60b0-4972-bc6d-a1fa46ca34b2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/RatNumTesting/main/RatNum.class" afterPath="$PROJECT_DIR$/out/production/RatNumTesting/main/RatNum.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/MainMenu.java" afterPath="$PROJECT_DIR$/src/main/MainMenu.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/RatNum.java" afterPath="$PROJECT_DIR$/src/main/RatNum.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/TestRatNum4EH.java" afterPath="$PROJECT_DIR$/src/main/TestRatNum4EH.java" />
     </list>
     <ignored path="RatNumTesting.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,17 +32,17 @@
         <entry file="file://$PROJECT_DIR$/src/main/MainMenu.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" column="49" lean-forward="false" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+              <caret line="10" column="53" lean-forward="false" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RatNum.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RatNum.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/RatNum.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="330" column="75" lean-forward="true" selection-start-line="330" selection-start-column="75" selection-end-line="330" selection-end-column="75" />
+            <state relative-caret-position="277">
+              <caret line="503" column="5" lean-forward="false" selection-start-line="503" selection-start-column="5" selection-end-line="503" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#RatNum#0" expanded="false" />
@@ -51,7 +55,7 @@
       <file leaf-file-name="RatNumTest1.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/RatNumTest1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
+            <state relative-caret-position="340">
               <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -60,11 +64,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestRatNum4EH.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TestRatNum4EH.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/TestRatNum4EH.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+            <state relative-caret-position="510">
+              <caret line="45" column="41" lean-forward="false" selection-start-line="45" selection-start-column="41" selection-end-line="45" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -117,6 +121,8 @@
       <find>add</find>
       <find>toString</find>
       <find>evalex</find>
+      <find>verb</find>
+      <find>add(R</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -718,8 +724,8 @@
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Application.TestRatNum4EH (1)" />
         <item index="1" class="java.lang.String" itemvalue="Application.MainMenu" />
-        <item index="2" class="java.lang.String" itemvalue="Application.RatNumTest2" />
-        <item index="3" class="java.lang.String" itemvalue="Application.RatNumTest1" />
+        <item index="2" class="java.lang.String" itemvalue="Application.RatNumTest1" />
+        <item index="3" class="java.lang.String" itemvalue="Application.RatNumTest2" />
         <item index="4" class="java.lang.String" itemvalue="Application.RatNumTest4" />
       </list>
     </recent_temporary>
@@ -781,15 +787,15 @@
       <workItem from="1481214715624" duration="1091000" />
       <workItem from="1481216214021" duration="3147000" />
       <workItem from="1481221483942" duration="726000" />
-      <workItem from="1481227118581" duration="78000" />
+      <workItem from="1481227118581" duration="856000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89318000" />
+    <option name="totallyTimeSpent" value="90096000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -801,7 +807,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21039128" sideWeight="0.50365496" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2230444" sideWeight="0.49634504" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.66067654" sideWeight="0.49634504" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969853" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1088,9 +1094,18 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_45/src.zip!/java/lang/Object.java" />
     <entry file="file://$PROJECT_DIR$/src/main/RatNumTest3.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/RatNumTest4.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/MainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="53" lean-forward="false" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/RatNumTest1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
+        <state relative-caret-position="340">
           <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1098,32 +1113,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/MainMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="49" lean-forward="false" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/RatNumTest4.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/TestRatNum4EH.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/RatNum.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="330" column="75" lean-forward="true" selection-start-line="330" selection-start-column="75" selection-end-line="330" selection-end-column="75" />
+        <state relative-caret-position="277">
+          <caret line="503" column="5" lean-forward="false" selection-start-line="503" selection-start-column="5" selection-end-line="503" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#RatNum#0" expanded="false" />
             <element signature="method#clone#0;class#RatNum#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/TestRatNum4EH.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="45" column="41" lean-forward="false" selection-start-line="45" selection-start-column="41" selection-end-line="45" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
