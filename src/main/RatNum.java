@@ -428,7 +428,7 @@ public class RatNum {
         } catch (ArithmeticException e) {
             switch (e.getMessage()) {
                 case "division_by_zero":
-                    response = "evalExpr error(3): in div";
+                    response = "evalExpr error(4): NumberFormatException: Denominator = 0";
                     break;
             }
         } catch (Exception e) {
