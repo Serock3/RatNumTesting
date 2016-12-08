@@ -415,7 +415,7 @@ public class RatNum {
                         response = (parse(parts[0]).equals(parse(parts[2]))) ? "false" : "true";
                         break;
                 }
-            } else if(parts.length != 1 && response.length() != 0) {
+            } else if(parts.length != 1) {
                 response = "evalExpr error(2): operator wrong or missing.";
             }
 
