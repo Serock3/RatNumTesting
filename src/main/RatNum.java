@@ -140,6 +140,7 @@ public class RatNum {
         int n = ratNum.numerator;
         int d = ratNum.denominator;
 
+
         if (d == 0 && n == 0) {
             throw new IllegalArgumentException("both_zero");
         }
@@ -148,19 +149,23 @@ public class RatNum {
             return ratNum;
         }
 
-        n *= Math.signum(d);
-        d *= Math.signum(d);
+        if(d < 0) {
+            n = -n;
+            d = -d;
+        }
 
         if (n % d == 0) ratNum.setBoth(n / d, 1, false);
         else {
-            int gcd = gcd(d, n);
-            while ((gcd = gcd(d, n)) != 1) {
-                n /= gcd;
-                d /= gcd;
-            }
+            long gcd = gcd(d, n);
+            
+            n /= gcd;
+            d /= gcd;
+            
+            
             ratNum.setNumerator(n, false);
             ratNum.setDenominator(d, false);
         }
+
         return ratNum;
     }
 
@@ -288,17 +293,16 @@ public class RatNum {
 
     /**
      * Calculates the greatest common divisor of two numbers.
-     * @param a The first number.
-     * @param b The second number.
+     * @param m The first number.
+     * @param n The second number.
      * @return Returns the greatest common divisor.
      */
     //Public methods
     public static int gcd(int a, int b){
-        if(a==0 && b==0){
+        if (a == 0 && b == 0) {
             throw new IllegalArgumentException();
         }
-        while (Math.abs(b) > 0)
-        {
+        while (Math.abs(b) > 0) {
             int temp = Math.abs(b);
             b = Math.abs(a) % Math.abs(b); // % is remainder
             a = temp;
@@ -471,8 +475,8 @@ public class RatNum {
      */
     public RatNum add(RatNum ratNum) {
         int lcm = lcm(this.getDenominator(), ratNum.getDenominator());
-
-        return new RatNum(numerator * lcm + ratNum.numerator * lcm, denominator * lcm, true);
+        int newNumerator = numerator * lcm/this.getDenominator() + ratNum.numerator * lcm/ratNum.getDenominator();
+        return new RatNum(newNumerator, lcm, true);
     }
 
     /**
