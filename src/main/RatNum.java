@@ -94,12 +94,17 @@ public class RatNum {
             String[] cutStrings = parseStr.split("/");
 
             //Exactly one occurrence of "/".
-            if (cutStrings.length > 2) throw new NumberFormatException();
+            if (cutStrings.length > 2)
+                throw new NumberFormatException();
 
             try {
-                numerator = Integer.parseInt(cutStrings[0]);
-                denominator = Integer.parseInt(cutStrings[1]);
-                simplify(this);
+                if(cutStrings.length == 2) {
+                    numerator = Integer.parseInt(cutStrings[0]);
+                    denominator = Integer.parseInt(cutStrings[1]);
+                    simplify(this);
+                } else {
+                    throw new NumberFormatException();
+                }
             } catch (NumberFormatException e) {
                 throw new NumberFormatException("Incorrect formatting on fraction " + parseStr);
             }
@@ -394,7 +399,7 @@ public class RatNum {
 
             // Once the string leaves the loop it should be fully simplified and handling of the expression can take place, if there are one.
 
-            // Should only be 3 fields in the array by now, otherwise an unhandled operator went through the parsing.
+            // Should only be 3 or 1 field(s) in the array by now, otherwise an unhandled operator went through the parsing.
             if (parts.length == 3) {
                 switch (parts[1]) {
                     case "<":
@@ -410,8 +415,8 @@ public class RatNum {
                         response = (parse(parts[0]).equals(parse(parts[2]))) ? "false" : "true";
                         break;
                 }
-            } else {
-                throw new IllegalArgumentException("evalExp(2): operator wrong or missing");
+            } else if(parts.length != 1) {
+                response = "evalExpr error(2): operator wrong or missing.";
             }
 
         } catch (NumberFormatException e) {
@@ -454,6 +459,25 @@ public class RatNum {
         return new RatNum(parseStr);
     }
 
+
+
+    public static int lcm(int m, int n) {
+        int max, min;
+        if(m > n) {
+            max = Math.abs(m);
+            min = Math.abs(n);
+        } else {
+            max = Math.abs(n);
+            min = Math.abs(m);
+        }
+        for(int i = 1; i <= min; i++) {
+            if((max * i) % min == 0) {
+                return i * max;
+            }
+        }
+        return -1;
+    }
+
     /**
      * Adds the current RatNum with the passed RatNum.
      *
@@ -461,7 +485,9 @@ public class RatNum {
      * @return Returns a new RatNum with the calculated value.
      */
     public RatNum add(RatNum ratNum) {
-        return new RatNum(numerator * ratNum.denominator + ratNum.numerator * denominator, denominator * ratNum.denominator, true);
+        int lcm = lcm(this.getDenominator(), ratNum.getDenominator());
+
+        return new RatNum(numerator * lcm + ratNum.numerator * lcm, denominator * lcm, true);
     }
 
     /**
@@ -515,7 +541,9 @@ public class RatNum {
      */
     @Override
     public String toString() {
-        return (denominator == 1) ? "" + numerator : numerator + "/" + denominator;
+        return numerator + "/" + denominator;
+        // We wanted the function to work like the line below, so that it skips the denominator if it's equal to 1 but the test-program disliked that idea.
+        //return (denominator == 1) ? "" + numerator : numerator + "/" + denominator;
     }
 
     /**
