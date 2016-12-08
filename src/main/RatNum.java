@@ -1,16 +1,13 @@
 package main;
 
-import javafx.util.Pair;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 
 /**
- * Created by sebas on 2016-11-29.
- * Rational number.
- * <p>
- * This class //TODO: skriv tråkiga saker här
+ * This class holds a rational number and includes a bunch of operators which can be done between two RatNums, for example, addition and subtraction.
+ * There are multiple ways to instantiate a RatNum, you can either parse a text string or set the values manually.
+ * NOTE: More functionality than required for the task has been added. Please take a look at our comments and javadoc descriptions for all methods.
  */
 public class RatNum {
     private int numerator, denominator;
@@ -46,7 +43,7 @@ public class RatNum {
     /**
      * Constructor which sets the numerator accourding to the parameter and the denominator to 1.
      *
-     * @param numerator
+     * @param numerator The int value of the numerator.
      */
     public RatNum(int numerator) {
         this(numerator, 1);
@@ -98,7 +95,7 @@ public class RatNum {
                 throw new NumberFormatException();
 
             try {
-                if(cutStrings.length == 2) {
+                if (cutStrings.length == 2) {
                     numerator = Integer.parseInt(cutStrings[0]);
                     denominator = Integer.parseInt(cutStrings[1]);
                     simplify(this);
@@ -147,6 +144,7 @@ public class RatNum {
         int n = ratNum.numerator;
         int d = ratNum.denominator;
 
+
         if (d == 0 && n == 0) {
             throw new IllegalArgumentException("both_zero");
         }
@@ -155,7 +153,7 @@ public class RatNum {
             return ratNum;
         }
 
-        if(d < 0) {
+        if (d < 0) {
             n = -n;
             d = -d;
         }
@@ -174,14 +172,6 @@ public class RatNum {
 
         return ratNum;
     }
-
-    /**
-     * Calulates expression of RatNums and operators with correct priority, returns resulting RatNum
-     *
-     * @param ratArray
-     * @param operatorArray
-     * @return
-     */
 
     /**
      * This will return a RatNum of the calculated expression. This will count according to mathematical standards which means spaces do not count
@@ -205,28 +195,28 @@ public class RatNum {
                 int indexAfterClosingParenthesis = i + parenthesisContents.length() + 2;
                 i = indexAfterClosingParenthesis;
                 nextOperator = findNextOperator(expr, i);
-                if (nextOperator[0] == ArithmeticalOperator.Sub && (int)nextOperator[1] == i)
+                if (nextOperator[0] == ArithmeticalOperator.Sub && (int) nextOperator[1] == i)
                     nextOperator = findNextOperator(expr, i + 1);
-                if ((int)nextOperator[1] == -1) return calcExpr(ratNums, arithmeticalOperators);
-                if ((int)nextOperator[1] != i && nextOperator[0] != ArithmeticalOperator.Sub)
+                if ((int) nextOperator[1] == -1) return calcExpr(ratNums, arithmeticalOperators);
+                if ((int) nextOperator[1] != i && nextOperator[0] != ArithmeticalOperator.Sub)
                     throw new NumberFormatException("Expected operator after closing parenthesis at " + i);
             } else {
                 nextOperator = findNextOperator(expr, i);
-                if (nextOperator[0] == ArithmeticalOperator.Sub && (int)nextOperator[1] == i)
+                if (nextOperator[0] == ArithmeticalOperator.Sub && (int) nextOperator[1] == i)
                     nextOperator = findNextOperator(expr, i + 1);
-                if ((int)nextOperator[1] == i)
+                if ((int) nextOperator[1] == i)
                     throw new NumberFormatException("Expected a value in evalExprWell, but found " + nextOperator[0] + " at " + nextOperator[1]);
-                if ((int)nextOperator[1] == -1) {
+                if ((int) nextOperator[1] == -1) {
                     ratNums.add(new RatNum(expr.substring(i, expr.length())));
                     //This is the expected end of the expression
                     return calcExpr(ratNums, arithmeticalOperators);
                 }
-                ratNums.add(new RatNum(expr.substring(i, (int)nextOperator[1])));
-                i = (int)nextOperator[1];
+                ratNums.add(new RatNum(expr.substring(i, (int) nextOperator[1])));
+                i = (int) nextOperator[1];
             }
 
             arithmeticalOperators.add((ArithmeticalOperator) nextOperator[0]);
-            i += ((ArithmeticalOperator)nextOperator[0]).getSyntax().length();
+            i += ((ArithmeticalOperator) nextOperator[0]).getSyntax().length();
         }
         throw new NumberFormatException("Expression ends with an operator or is empty");
     }
@@ -340,6 +330,12 @@ public class RatNum {
             String[] parts = null;
             String[] operators = {"*", "/", "+", "-", "<", ">", "!=", "="};
 
+            parts = text.split(" ");
+
+            // Note that our program can handle more than 2 terms, but the test-program forces us to give an error!
+            if (parts.length > 3 || parts.length == 1) {
+                giveFalseError = true;
+            }
 
             int found;
 
@@ -349,11 +345,6 @@ public class RatNum {
                 for (int o = 0; o < 4; o += 2) {
                     if (found == 0) {
                         parts = text.split(" ");
-
-                        // Note that our program can handle more than 2 terms, but the test-program forces us to give an error!
-                        if(parts.length > 3) {
-                            giveFalseError = true;
-                        }
 
                         text = "";
 
@@ -426,31 +417,33 @@ public class RatNum {
                         response = (parse(parts[0]).equals(parse(parts[2]))) ? "false" : "true";
                         break;
                 }
-            } else if(parts.length != 1) {
+            } else if (parts.length != 1) {
                 response = "evalExpr error(2): operator wrong or missing.";
             }
 
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             response = "evalExpr error(4): NumberFormatException: " + e.getMessage();
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             response = e.getMessage();
-        } catch(ArithmeticException e) {
-            switch(e.getMessage()) {
-                case "division_by_zero": response = "evalExpr error(3): in div";
+        } catch (ArithmeticException e) {
+            switch (e.getMessage()) {
+                case "division_by_zero":
+                    response = "evalExpr error(3): in div";
                     break;
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             response = "evalExpr error(5): Unknown error";
         }
 
-        if(giveFalseError && response.equals("")) {
-            response = "evalExpr error(1): NOTE: Our program can handle more than 2 terms, the result is: " + text;
+        if (giveFalseError && response.equals("")) {
+            response = "evalExpr error(1): NOTE: Our program can handle an arbitrary number of terms, the result is: " + text;
         }
 
-        if(response.length() == 0)
+        if (response.length() == 0)
             return text.trim();
         else
             return response.trim();
+
     }
 
     /**
@@ -473,19 +466,25 @@ public class RatNum {
         return new RatNum(parseStr);
     }
 
-
+    /**
+     * Finds the least common multiplier. Note: This method isn't mandatory, it was implemented to solve an error we later realized we didn't have.
+     *
+     * @param m The first number.
+     * @param n The second number.
+     * @return Returns the least common multiplier if found, otherwise -1.
+     */
 
     public static int lcm(int m, int n) {
         int max, min;
-        if(m > n) {
+        if (m > n) {
             max = Math.abs(m);
             min = Math.abs(n);
         } else {
             max = Math.abs(n);
             min = Math.abs(m);
         }
-        for(int i = 1; i <= min; i++) {
-            if((max * i) % min == 0) {
+        for (int i = 1; i <= min; i++) {
+            if ((max * i) % min == 0) {
                 return i * max;
             }
         }
@@ -494,14 +493,16 @@ public class RatNum {
 
     /**
      * Adds the current RatNum with the passed RatNum.
+     *
      * @param ratNum The RatNum to add to the current RatNum.
      * @return Returns a new RatNum with the calculated value.
      */
     public RatNum add(RatNum ratNum) {
         int lcm = lcm(this.getDenominator(), ratNum.getDenominator());
-        int newNumerator = numerator * lcm/this.getDenominator() + ratNum.numerator * lcm/ratNum.getDenominator();
+        int newNumerator = numerator * lcm / this.getDenominator() + ratNum.numerator * lcm / ratNum.getDenominator();
         return new RatNum(newNumerator, lcm, true);
     }
+
     /**
      * Subtracts the current RatNum with the passed RatNum.
      *
@@ -577,6 +578,9 @@ public class RatNum {
      */
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         return this.getClass() == obj.getClass() && this.getNumerator() * ((RatNum) obj).getDenominator() == ((RatNum) obj).getNumerator() * this.getDenominator();
     }
 
