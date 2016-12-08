@@ -20,9 +20,10 @@ public class RatNum {
     /**
      * Constructor which sets the numerator and denominator according to the given parameters and also includes the option to skip the immediate
      * simplification.
-     * @param numerator The int value of the numerator.
+     *
+     * @param numerator   The int value of the numerator.
      * @param denominator The int value of the denominator.
-     * @param trim Boolean value, will skip simplify immediately if set to false.
+     * @param trim        Boolean value, will skip simplify immediately if set to false.
      * @throws NumberFormatException
      */
     private RatNum(int numerator, int denominator, boolean trim) throws NumberFormatException {
@@ -34,7 +35,8 @@ public class RatNum {
 
     /**
      * Constructor which sets the numerator and denominator according to the given parameters, this will also immediately simplify the RatNum.
-     * @param numerator The int value of the numerator.
+     *
+     * @param numerator   The int value of the numerator.
      * @param denominator The int value of the denominator.
      */
     public RatNum(int numerator, int denominator) {
@@ -43,6 +45,7 @@ public class RatNum {
 
     /**
      * Constructor which sets the numerator accourding to the parameter and the denominator to 1.
+     *
      * @param numerator
      */
     public RatNum(int numerator) {
@@ -51,6 +54,7 @@ public class RatNum {
 
     /**
      * Copy constructor.
+     *
      * @param rat The RatNum to be copied.
      */
     public RatNum(RatNum rat) {
@@ -62,6 +66,7 @@ public class RatNum {
 
     /**
      * Creates a RatNum from a given double value. NOTE: This sometimes fails.
+     *
      * @param db The double value to be coverted into a RatNum.
      */
     public RatNum(double db) {
@@ -77,6 +82,7 @@ public class RatNum {
 
     /**
      * Parses a string and creates a RatNum from text. Also making sure the RatNum is valid.
+     *
      * @param parseStr The string to be parsed into a RatNum.
      * @throws NumberFormatException Will be thrown if there are formatting errors in the given string.
      */
@@ -127,6 +133,7 @@ public class RatNum {
 
     /**
      * Simplifies the given RatNum and performs some error checking to make sure the RatNum follows mathematical rules, for example no zero-denominator.
+     *
      * @param ratNum The RatNum to be simplified.
      * @return Returns a new simplified RatNum.
      * @throws IllegalArgumentException Will be thrown if the denominator is zero.
@@ -170,6 +177,7 @@ public class RatNum {
     /**
      * This will return a RatNum of the calculated expression. This will count according to mathematical standards which means spaces do not count
      * as parenthesis and instead explicit parenthesis are needed. For example, "5/2 / 6/5" will be calculated as "((5/6)/6)/5".
+     *
      * @param expr
      * @return
      */
@@ -180,7 +188,7 @@ public class RatNum {
         ArrayList<RatNum> ratNums = new ArrayList<>();
         ArrayList<ArithmeticalOperator> arithmeticalOperators = new ArrayList<>();
         int i = 0;
-        Pair<ArithmeticalOperator, Integer> nextOperator;
+        Object nextOperator[];
         while (i < expr.length()) {
             if (expr.charAt(i) == '(') {
                 String parenthesisContents = parenthesisTrim(expr, i);
@@ -188,35 +196,36 @@ public class RatNum {
                 int indexAfterClosingParenthesis = i + parenthesisContents.length() + 2;
                 i = indexAfterClosingParenthesis;
                 nextOperator = findNextOperator(expr, i);
-                if (nextOperator.getKey() == ArithmeticalOperator.Sub && nextOperator.getValue() == i)
+                if (nextOperator[0] == ArithmeticalOperator.Sub && (int)nextOperator[1] == i)
                     nextOperator = findNextOperator(expr, i + 1);
-                if (nextOperator.getValue() == -1) return calcExpr(ratNums, arithmeticalOperators);
-                if (nextOperator.getValue() != i && nextOperator.getKey() != ArithmeticalOperator.Sub)
+                if ((int)nextOperator[1] == -1) return calcExpr(ratNums, arithmeticalOperators);
+                if ((int)nextOperator[1] != i && nextOperator[0] != ArithmeticalOperator.Sub)
                     throw new NumberFormatException("Expected operator after closing parenthesis at " + i);
             } else {
                 nextOperator = findNextOperator(expr, i);
-                if (nextOperator.getKey() == ArithmeticalOperator.Sub && nextOperator.getValue() == i)
+                if (nextOperator[0] == ArithmeticalOperator.Sub && (int)nextOperator[1] == i)
                     nextOperator = findNextOperator(expr, i + 1);
-                if (nextOperator.getValue() == i)
-                    throw new NumberFormatException("Expected a value in evalExprWell, but found " + nextOperator.getKey() + " at " + nextOperator.getValue());
-                if (nextOperator.getValue() == -1) {
+                if ((int)nextOperator[1] == i)
+                    throw new NumberFormatException("Expected a value in evalExprWell, but found " + nextOperator[0] + " at " + nextOperator[1]);
+                if ((int)nextOperator[1] == -1) {
                     ratNums.add(new RatNum(expr.substring(i, expr.length())));
                     //This is the expected end of the expression
                     return calcExpr(ratNums, arithmeticalOperators);
                 }
-                ratNums.add(new RatNum(expr.substring(i, nextOperator.getValue())));
-                i = nextOperator.getValue();
+                ratNums.add(new RatNum(expr.substring(i, (int)nextOperator[1])));
+                i = (int)nextOperator[1];
             }
 
-            arithmeticalOperators.add(nextOperator.getKey());
-            i += nextOperator.getKey().getSyntax().length();
+            arithmeticalOperators.add((ArithmeticalOperator) nextOperator[0]);
+            i += ((ArithmeticalOperator)nextOperator[0]).getSyntax().length();
         }
-        throw new NumberFormatException("Expression end with an operator or is empty");
+        throw new NumberFormatException("Expression ends with an operator or is empty");
     }
 
     /**
      * Trims a given string containing parenthesis, starting from param startindex and ending at related closing parenthesis.
-     * @param expr The expression as to be trimmed as a string.
+     *
+     * @param expr       The expression as to be trimmed as a string.
      * @param startindex The index where to start trimming the parenthesis.
      * @return Returns the trimmed string.
      */
@@ -237,31 +246,32 @@ public class RatNum {
 
     /**
      * Finds the first occurence of an ArithmeticalOperator, returns the index and the operator.
-     * @param expr The string to be parsed.
+     *
+     * @param expr       The string to be parsed.
      * @param startindex Index where to start looking for an operator in the given string.
-     * @return Returns the index and the operator as a Pair. Returns -1 if no operator found.
+     * @return Returns the index and the operator as an array of Objects, index 0 for operator and 1 for index. Returns -1 as index if no operator found.
      */
-    //finds the first occurrence of an ArithmeticalOperator, returns the index and the operator, if no operator is found then the index returned is -1
-    public static Pair<ArithmeticalOperator, Integer> findNextOperator(String expr, int startindex) {
+    static Object[] findNextOperator(String expr, int startindex) {
         int i = 1000000;
-        int itmp;
+        int tmp;
         ArithmeticalOperator firstOperator = null;
         for (ArithmeticalOperator arithmeticalOperator : ArithmeticalOperator.values()) {
-            itmp = expr.indexOf(arithmeticalOperator.getSyntax(), startindex);
-            if (itmp == -1) continue;
-            if (itmp < i) {
-                i = itmp;
+            tmp = expr.indexOf(arithmeticalOperator.getSyntax(), startindex);
+            if (tmp == -1) continue;
+            if (tmp < i) {
+                i = tmp;
                 firstOperator = arithmeticalOperator;
             }
 
         }
-        if (i == 1000000) return new Pair<>(null, -1);
-        return new Pair<>(firstOperator, i);
+        if (i == 1000000) return new Object[]{null, -1};
+        return new Object[]{firstOperator, i};
     }
 
     /**
      * Calculates the given the two ArrayLists of terms and operators.
-     * @param ratArray The array of terms.
+     *
+     * @param ratArray      The array of terms.
      * @param operatorArray The array of operators.
      * @return Returns the calculated value, i.e. the only element left after all terms have been simplified into one.
      */
@@ -283,17 +293,17 @@ public class RatNum {
 
     /**
      * Calculates the greatest common divisor of two numbers.
+     *
      * @param a The first number.
      * @param b The second number.
      * @return Returns the greatest common divisor.
      */
     //Public methods
-    public static int gcd(int a, int b){
-        if(a==0 && b==0){
+    public static int gcd(int a, int b) {
+        if (a == 0 && b == 0) {
             throw new IllegalArgumentException();
         }
-        while (Math.abs(b) > 0)
-        {
+        while (Math.abs(b) > 0) {
             int temp = Math.abs(b);
             b = Math.abs(a) % Math.abs(b); // % is remainder
             a = temp;
@@ -304,6 +314,7 @@ public class RatNum {
     /**
      * Parses and evalutates a given string according to the instructions for the task. This will consider blank spaces as parentheses.
      * Note that this method allows for an indefinite amount of terms and is NOT limited to just two.
+     *
      * @param text The text to be parsed.
      * @return Returns the evaluated answer. If the expression contains a comparison operator it will return true or false.
      */
@@ -403,20 +414,21 @@ public class RatNum {
                 throw new IllegalArgumentException("evalExp(2): operator wrong or missing");
             }
 
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             response = "evalExpr error(4): NumberFormatException: " + e.getMessage();
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             response = e.getMessage();
-        } catch(ArithmeticException e) {
-            switch(e.getMessage()) {
-                case "division_by_zero": response = "evalExpr error(3): in div";
+        } catch (ArithmeticException e) {
+            switch (e.getMessage()) {
+                case "division_by_zero":
+                    response = "evalExpr error(3): in div";
                     break;
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             response = "evalExpr error(5): Unknown error";
         }
 
-        if(response.length() == 0)
+        if (response.length() == 0)
             return text;
         else
             return response;
@@ -424,6 +436,7 @@ public class RatNum {
 
     /**
      * Simply calls the method evalExprWell2 which will parse and calculate according to mathematical standards.
+     *
      * @param expr The string which to be parsed.
      * @return Returns the parsed and calculated string as a new string.
      */
@@ -433,6 +446,7 @@ public class RatNum {
 
     /**
      * Simply calls the constructor which will parse a string and therefrom create the RatNum object.
+     *
      * @param parseStr The string to be parsed.
      * @return Returns the new RatNum.
      */
@@ -442,6 +456,7 @@ public class RatNum {
 
     /**
      * Adds the current RatNum with the passed RatNum.
+     *
      * @param ratNum The RatNum to add to the current RatNum.
      * @return Returns a new RatNum with the calculated value.
      */
@@ -451,6 +466,7 @@ public class RatNum {
 
     /**
      * Subtracts the current RatNum with the passed RatNum.
+     *
      * @param ratNum The RatNum to subtract from the current RatNum.
      * @return Returns a new RatNum with the calculated value.
      */
@@ -460,6 +476,7 @@ public class RatNum {
 
     /**
      * Multiplies the current RatNum with the passed RatNum.
+     *
      * @param ratNum The RatNum to multiply the current RatNum with.
      * @return Returns a new RatNum with the calculated value.
      */
@@ -469,6 +486,7 @@ public class RatNum {
 
     /**
      * Divides the current object with the passed argument RatNum.
+     *
      * @param ratNum The RatNum to divide with.
      * @return Returns a new RatNum with the calculated value.
      * @throws ArithmeticException This error will be thrown if division with 0 is attempted.
@@ -480,17 +498,19 @@ public class RatNum {
 
     /**
      * Powers the current RatNum with the given RatNum object. For example, passing a RatNum of the value 2 will square the current RatNum.
+     *
      * @param ratNum The power.
      * @return Returns the powered RatNum.
      */
-    public RatNum pow(RatNum ratNum){
-        RatNum numeratorFrac = new RatNum(Math.pow(numerator,ratNum.toDouble()));
-        RatNum denominatorFrac = new RatNum(Math.pow(denominator,ratNum.toDouble()));
-        return new RatNum(numeratorFrac.numerator*denominatorFrac.denominator,numeratorFrac.denominator*denominatorFrac.numerator);
+    public RatNum pow(RatNum ratNum) {
+        RatNum numeratorFrac = new RatNum(Math.pow(numerator, ratNum.toDouble()));
+        RatNum denominatorFrac = new RatNum(Math.pow(denominator, ratNum.toDouble()));
+        return new RatNum(numeratorFrac.numerator * denominatorFrac.denominator, numeratorFrac.denominator * denominatorFrac.numerator);
     }
 
     /**
      * Converts the object into a predefined string. In this case the string will look like, "numerator"/"denominator".
+     *
      * @return Returns the string.
      */
     @Override
@@ -500,6 +520,7 @@ public class RatNum {
 
     /**
      * Converts the object into a predefined string. In this case the string will look like, "whole bits" "remainder"/"denominator".
+     *
      * @return Returns the string.
      */
     public String toString2() {
@@ -507,8 +528,10 @@ public class RatNum {
         int whole = this.getNumerator() / this.getDenominator();
         return whole + " " + new RatNum(remainder, this.getDenominator());
     }
+
     /**
      * Checks whether the object is equal to this object and returns true if it is.
+     *
      * @param obj Another object to be compared to this.
      * @return Returns true if the objects are equal, otherwise false.
      */
@@ -519,6 +542,7 @@ public class RatNum {
 
     /**
      * Returns a new copy of the current object.
+     *
      * @return The copy.
      * @throws CloneNotSupportedException This exception will be thrown in the copy fails.
      */
@@ -529,6 +553,7 @@ public class RatNum {
 
     /**
      * Checks whether the current object is less than the parameter.
+     *
      * @param ratNum The parameter to be compared with this.
      * @return Returns true if the current object is less than the given object.
      */
@@ -538,6 +563,7 @@ public class RatNum {
 
     /**
      * Converts the RatNum object into a double.
+     *
      * @return Returns the double.
      */
     public double toDouble() {
@@ -548,6 +574,7 @@ public class RatNum {
 
     /**
      * Getter for the denominator.
+     *
      * @return Returns the denominator in form of an int.
      */
     public int getDenominator() {
@@ -556,6 +583,7 @@ public class RatNum {
 
     /**
      * Setter for the denominator. Thil will also immediately simplify the RatNum.
+     *
      * @param denominator The new value to be set.
      */
     public void setDenominator(int denominator) {
@@ -564,8 +592,9 @@ public class RatNum {
 
     /**
      * Setter for the denominator with optional simplification.
+     *
      * @param denominator The new value for the denominator.
-     * @param trim Boolean value, the method will skip simplifying if this is set to false.
+     * @param trim        Boolean value, the method will skip simplifying if this is set to false.
      */
     private void setDenominator(int denominator, boolean trim) {
         this.denominator = denominator;
@@ -574,6 +603,7 @@ public class RatNum {
 
     /**
      * Getter for the numerator.
+     *
      * @return Returns the numerator as an int.
      */
     public int getNumerator() {
@@ -582,6 +612,7 @@ public class RatNum {
 
     /**
      * Setter for the numerator. This will also immediately simplify the RatNum.
+     *
      * @param numerator The int value for the new numerator.
      */
     public void setNumerator(int numerator) {
@@ -590,8 +621,9 @@ public class RatNum {
 
     /**
      * Setter for the numerator with optional simplification.
+     *
      * @param numerator The int value for the new numerator.
-     * @param trim Boolean value, the method will skip simplifying if this is set to false.
+     * @param trim      Boolean value, the method will skip simplifying if this is set to false.
      */
     private void setNumerator(int numerator, boolean trim) {
         this.numerator = numerator;
@@ -600,7 +632,8 @@ public class RatNum {
 
     /**
      * Sets both the numerator and the denominator at the same time. This will also immediately simplify the RatNum.
-     * @param numerator The int value of the new numerator.
+     *
+     * @param numerator   The int value of the new numerator.
      * @param denominator The inte value of the new denominator.
      */
     public void setBoth(int numerator, int denominator) {
@@ -609,9 +642,10 @@ public class RatNum {
 
     /**
      * Setter for the both the numerator and the denominator with optional simplification.
-     * @param numerator The int value for the new numerator.
+     *
+     * @param numerator   The int value for the new numerator.
      * @param denominator The int value for the new denominator.
-     * @param trim Boolean value, the method will skip simplifying if this is set to false.
+     * @param trim        Boolean value, the method will skip simplifying if this is set to false.
      */
     private void setBoth(int numerator, int denominator, boolean trim) {
         setNumerator(numerator, trim);

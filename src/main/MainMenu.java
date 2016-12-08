@@ -8,6 +8,7 @@ import java.util.Scanner;
  */
 public class MainMenu {
     public static void main(String args[]) {
+        System.out.println(RatNum.evalExprWell("(27^(1/3))^2"));
         String text = "";
 
         Scanner scanner = new Scanner(System.in);
