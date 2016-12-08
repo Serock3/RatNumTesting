@@ -155,19 +155,23 @@ public class RatNum {
             return ratNum;
         }
 
-        n *= Math.signum(d);
-        d *= Math.signum(d);
+        if(d < 0) {
+            n = -n;
+            d = -d;
+        }
 
         if (n % d == 0) ratNum.setBoth(n / d, 1, false);
         else {
-            int gcd = gcd(d, n);
-            while ((gcd = gcd(d, n)) != 1) {
-                n /= gcd;
-                d /= gcd;
-            }
+            long gcd = gcd(d, n);
+
+            n /= gcd;
+            d /= gcd;
+
+
             ratNum.setNumerator(n, false);
             ratNum.setDenominator(d, false);
         }
+
         return ratNum;
     }
 
